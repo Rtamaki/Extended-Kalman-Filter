@@ -66,28 +66,28 @@ void KalmanFilter::UpdateEKF(const VectorXd &z) {
   VectorXd z_pred = VectorXd(3);
   z_pred << sqrt(px*px + py*py), atan2(py, px), (px*vx + py*vy)/sqrt(px*px + py*py);
 
-  while(z_pred(1) < -3.1415 || z_pred(1) > 3.1415)
-  {
-    if(z_pred(1) < -3.1415){
-      z_pred(1) = z_pred(1) + 2*3.1415;
-    } else
-    {
-      if(z_pred(1) > 3.1415){
-        z_pred(1) = z_pred(1) - 2*3.1415;
-      }
-    }
-  }
+  // while(z_pred(1) < -3.1415 || z_pred(1) > 3.1415)
+  // {
+  //   if(z_pred(1) < -3.1415){
+  //     z_pred(1) = z_pred(1) + 2*3.1415;
+  //   } else
+  //   {
+  //     if(z_pred(1) > 3.1415){
+  //       z_pred(1) = z_pred(1) - 2*3.1415;
+  //     }
+  //   }
+  // }
 
 
   VectorXd y = z - z_pred;
   while(y(1) < -3.1415 || y(1) > 3.1415)
   {
     if(y(1) < -3.1415){
-      y(1) = y(1) + 3.1415;
+      y(1) = y(1) + 2*3.1415;
     } else
     {
       if(y(1) > 3.1415){
-        y(1) = y(1) - 3.1415;
+        y(1) = y(1) - 2 * 3.1415;
       }
     }
   }
