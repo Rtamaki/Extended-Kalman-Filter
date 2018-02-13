@@ -69,7 +69,7 @@ MatrixXd Tools::CalculateJacobian(const VectorXd& x_state) {
 
   Hj << px/mod,                  py/mod,                  0,      0,
         -py/mod2,                  px/mod2,                  0,      0,
-        py*(vx*py + vy*px)/mod3, px*(vy*px - vx*py)/mod3, px/mod, py/mod;
+        py*(vx*py - vy*px)/mod3, px*(vy*px - vx*py)/mod3, px/mod, py/mod;
 
   return Hj;
 }
